@@ -29,8 +29,12 @@ function mySend() {
               url: url,
               onload: function(response) {
                   GM.setClipboard(response.responseText);
-                  chosen_button.innerHTML = 'Copied!';
-                  setTimeout(() => {chosen_button.innerHTML = 'Copy BibTex'}, 5000);
+                  if (chosen_button != null) {
+                      chosen_button.innerHTML = 'Copied!';
+                      var saved_button = chosen_button;
+                      chosen_button = null;
+                      setTimeout(() => {saved_button.innerHTML = 'Copy BibTex'; }, 5000);
+                  }
               }
           });
       }
@@ -49,13 +53,17 @@ function init() {
         e.setAttribute('href', 'javascript:void(0)');
         insertAfter(button, e);
         e.addEventListener('click', function(c) {
-            document.getElementById('gs_md_s').setAttribute('style', 'visibility:hidden;');
-            document.getElementById('gs_cit').setAttribute('style', 'display:none;');
-
             e.innerHTML = 'Loading...';
             chosen_button = e;
             button.click();
+            document.getElementById('gs_md_s').setAttribute('style', 'visibility:hidden;');
+            document.getElementById('gs_cit').setAttribute('style', 'display:none;');
         });
+
+        button.addEventListener('click', function(b) {
+            document.getElementById('gs_md_s').removeAttribute('style');
+            document.getElementById('gs_cit').removeAttribute('style');
+        })
     });
 
     XMLHttpRequest.prototype.send = mySend;
