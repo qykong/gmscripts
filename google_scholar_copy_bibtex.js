@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name         Google scholar copy bibtex
 // @namespace    http://tampermonkey.net/
+// @downloadURL  https://raw.githubusercontent.com/qykong/gmscripts/master/google_scholar_copy_bibtex.js
 // @version      0.1
 // @description  Copy bibtex on google scholar with one click
 // @author       Quyu Kong
