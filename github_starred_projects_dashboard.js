@@ -46,7 +46,7 @@ function createElementFromHTML(htmlString) {
   return div.firstChild;
 }
 
-function appendRepos(repos, parentNode) {
+function appendRepos(repos, parentNode, starred_prject_url) {
     console.log(repos);
     parentNode.appendChild(createElementFromHTML('<h2 class="f5 text-bold mb-1">Starred projects</h2>'));
     repos.forEach(repo => {
@@ -58,12 +58,15 @@ function appendRepos(repos, parentNode) {
 
         </div>`));
     })
+    parentNode.appendChild(createElementFromHTML(`<a class="d-block link-gray no-underline f6 mb-3" href="${starred_prject_url}">
+       Explore more →
+    </a>`));
 }
 
 function init(element) {
     let starred_prject_url = Array.prototype.find.call(document.getElementsByClassName('dropdown-item'), e => e.href && e.href.includes('tab=star')).href;
     getStarredProjects(starred_prject_url)
-        .then(repos => appendRepos(repos, element))
+        .then(repos => appendRepos(repos, element, starred_prject_url))
         .catch(err => console.log(err));
 }
 
@@ -74,7 +77,7 @@ function init(element) {
  * @param retry
  * @return {Promise<any>}
  */
-function detectElement(selector, interval = 500, retry = 10) {
+function detectElement(selector, interval = 200, retry = 10) {
   return new Promise((resolve, reject) => {
     setTimeout(function detect() {
       let dom = document.querySelector(selector);
