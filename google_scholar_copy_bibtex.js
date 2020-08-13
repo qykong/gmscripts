@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Google scholar copy bibtex
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/qykong/gmscripts
 // @downloadURL  https://raw.githubusercontent.com/qykong/gmscripts/master/google_scholar_copy_bibtex.js
-// @version      0.2
+// @version      0.2.1
 // @description  Copy bibtex on google scholar with one click
 // @author       Quyu Kong
 // @supportURL   https://github.com/qykong/gmscripts/issues
@@ -24,28 +24,30 @@ function mySend() {
     if (this.realonreadystatechange == undefined) this.realonreadystatechange = this.onreadystatechange
     this.onreadystatechange = () => {
       if (this.readyState == 4 && this.status == 200) {
-          var url = this.responseText.match('href="(.*?)">BibTeX')[1].replaceAll('amp;', '');
-          GM.xmlHttpRequest({
-              method: "GET",
-              url: url,
-              onload: function(response) {
-                  if (response.status >= 200 && response.status < 400) {
-                      GM.setClipboard(response.responseText);
-                      if (chosen_button != null) {
-                          chosen_button.innerHTML = 'Copied!';
-                          var saved_button = chosen_button;
-                          chosen_button = null;
-                          setTimeout(() => {saved_button.innerHTML = 'Copy BibTex'; }, 5000);
-                      }
-                  } else {
-                      if (chosen_button != null) {
-                          chosen_button.innerHTML = 'Copy BibTex';
-                          chosen_button = null;
-                          alert('Failed to copy. Check if you are able to open: ' + url);
+          if (this.responseText.match('href="(.*?)">BibTeX')) {
+              var url = this.responseText.match('href="(.*?)">BibTeX')[1].replaceAll('amp;', '');
+              GM.xmlHttpRequest({
+                  method: "GET",
+                  url: url,
+                  onload: function(response) {
+                      if (response.status >= 200 && response.status < 400) {
+                          GM.setClipboard(response.responseText);
+                          if (chosen_button != null) {
+                              chosen_button.innerHTML = 'Copied!';
+                              var saved_button = chosen_button;
+                              chosen_button = null;
+                              setTimeout(() => {saved_button.innerHTML = 'Copy BibTex'; }, 5000);
+                          }
+                      } else {
+                          if (chosen_button != null) {
+                              chosen_button.innerHTML = 'Copy BibTex';
+                              chosen_button = null;
+                              alert('Failed to copy. Check if you are able to open: ' + url);
+                          }
                       }
                   }
-              }
-          });
+              });
+          }
       }
       this.realonreadystatechange();
     }
