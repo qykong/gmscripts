@@ -1,8 +1,7 @@
 // ==UserScript==
 // @name         Google scholar copy bibtex
-// @namespace    https://github.com/qykong/gmscripts
 // @downloadURL  https://raw.githubusercontent.com/qykong/gmscripts/master/google_scholar_copy_bibtex.js
-// @version      0.2.1
+// @version      0.2.2
 // @description  Copy bibtex on google scholar with one click
 // @author       Quyu Kong
 // @supportURL   https://github.com/qykong/gmscripts/issues
@@ -49,10 +48,10 @@ function mySend() {
               });
           }
       }
-      this.realonreadystatechange();
+      this.realonreadystatechange.apply(this, arguments);
     }
     //call original
-    this.realSend();
+    this.realSend.apply(this, arguments);
 }
 
 function hideCitationModal() {
