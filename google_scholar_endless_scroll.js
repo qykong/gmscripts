@@ -2,10 +2,10 @@
 // @name            Endless Google Scholar
 // @description     Load more results automatically and endlessly.
 // @author          tumpio, Quyu Kong
-// @downloadURL  https://raw.githubusercontent.com/qykong/gmscripts/master/google_scholar_endless_scroll.js
+// @downloadURL     https://raw.githubusercontent.com/qykong/gmscripts/master/google_scholar_endless_scroll.js
 // @include         https://scholar.google.*
 // @run-at          document-start
-// @version         0.1
+// @version         0.1.1
 // @license         MIT
 // @noframes
 // ==/UserScript==
