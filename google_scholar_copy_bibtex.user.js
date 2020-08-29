@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Google scholar copy bibtex
-// @downloadURL  https://raw.githubusercontent.com/qykong/gmscripts/master/google_scholar_copy_bibtex.js
+// @downloadURL  https://raw.githubusercontent.com/qykong/gmscripts/master/google_scholar_copy_bibtex.user.js
 // @version      0.2.2
 // @description  Copy bibtex on google scholar with one click
 // @author       Quyu Kong
