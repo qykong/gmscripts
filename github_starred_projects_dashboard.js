@@ -5,6 +5,7 @@
 // @description  Add a panel of starred projects blow the "Explore repositories".
 // @author       Quyu Kong
 // @match        https://github.com/
+// @run-at       document-end
 // @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
