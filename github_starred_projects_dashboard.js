@@ -2,7 +2,7 @@
 // @name         Github homepage with starred project
 // @namespace    https://github.com/
 // @downloadURL  https://raw.githubusercontent.com/qykong/gmscripts/master/github_starred_projects_dashboard.js
-// @version      0.2.1
+// @version      1.0.0
 // @description  Add a panel of starred projects blow the "Explore repositories".
 // @author       Quyu Kong
 // @match        https://github.com/
